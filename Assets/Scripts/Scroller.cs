@@ -45,4 +45,5 @@ public class Scroller : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("gameManager").GetComponent<gameManagerScript>().setInside(false);
     }
+    
 }

@@ -10,6 +10,8 @@ TagManager:
   - pauseMenu
   - CountdownTimer
   - healthBar
+  - alcohol
+  - coin
   layers:
   - Default
   - TransparentFX

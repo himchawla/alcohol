@@ -13,6 +13,10 @@ public class gameManagerScript : MonoBehaviour
     private GameObject player;
     private GameObject bubble;
     private GameObject healthBar;
+
+    bool coinExists = false;
+
+    public GameObject coin;
     bool isInside = false;
     void Start()
     {
@@ -40,6 +44,11 @@ public class gameManagerScript : MonoBehaviour
             timeSane = 0.0f;
             sanity -= sanityDowner * timeOut / 1000 * timer / 1000;
             player.GetComponent<Player_move>().enableArrow();
+            if (!coin.gameObject.activeSelf)
+            {
+                coinExists = false;
+            }
+
         }
         else
         {
@@ -47,6 +56,13 @@ public class gameManagerScript : MonoBehaviour
             timeOut = 0.0f;
             timeSane += Time.deltaTime;
             score += Time.deltaTime * 25;
+
+            if(timeSane > 6 && !coinExists)
+            {
+                summonCoin();
+                coinExists = true;
+            }
+
         }
         healthBar.GetComponent<healthBarScript>().setHealth((int)sanity);
     }
@@ -60,5 +76,19 @@ public class gameManagerScript : MonoBehaviour
     public void setInside(bool ins)
     {
         isInside = ins;
-    }    
+    }
+
+    public void summonCoin()
+    {
+        Vector2 coinPos = bubble.GetComponent<Rigidbody2D>().position + bubble.GetComponent<Rigidbody2D>().velocity.normalized * 10;
+        if (coinPos.x < -12)
+            coinPos.x += 12;
+        else if (coinPos.x > 12)
+            coinPos.x -= 12;
+      //  coin =  Instantiate(coin);
+        coin.transform.position = coinPos;
+        coin.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
+        coin.gameObject.SetActive(true);
+    }
+
 }
