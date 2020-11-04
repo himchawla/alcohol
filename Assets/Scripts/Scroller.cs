@@ -5,12 +5,12 @@ using UnityEngine;
 public class Scroller : MonoBehaviour
 {
     private Rigidbody2D RIGIDBODY;
-    private float m_Speed = 1.5f;
+    private Vector2 m_Speed = new Vector2(-1.5f,1.5f);
 
     void Start()
     {
         RIGIDBODY = GetComponent<Rigidbody2D>();
-        RIGIDBODY.velocity = new Vector2(-m_Speed , m_Speed);
+        RIGIDBODY.velocity = m_Speed;
 
     }
 
@@ -18,10 +18,15 @@ public class Scroller : MonoBehaviour
     void Update()
     {
 
+      //  float timer = GameObject.FindGameObjectWithTag("gameManager").GetComponent<gameManagerScript>.getTimer();
+
         if (RIGIDBODY.position.x <= -9)
-            RIGIDBODY.velocity = new Vector2(m_Speed, m_Speed);
+            m_Speed.x = 1.5f;
         else if (RIGIDBODY.position.x >= 9)
-            RIGIDBODY.velocity = new Vector2(-m_Speed, m_Speed);        
+            m_Speed.x = -1.5f;
+
+        RIGIDBODY.velocity = m_Speed;
+
     }
 
     void OnTriggerEnter2D(Collider2D col)

@@ -7,9 +7,26 @@ public class Player_move : MonoBehaviour
     public float walk_speed = 5.0f;
     public healthBarScript healthBar;
 
+    public Rigidbody2D bubble;
+    public Rigidbody2D arrow;
+    private Rigidbody2D player;
+
+    private void Start()
+    {
+        player = GetComponent<Rigidbody2D>();
+    }
 
     void FixedUpdate()
     {
+        Vector2 dir;
+
+        dir = bubble.position - player.position;
+        dir.Normalize();
+
+        
+
+        arrow.position = player.position + dir * 2;
+
         float move = Input.GetAxis("Horizontal");
         float move_Vert = Input.GetAxis("Vertical");
 
@@ -18,5 +35,6 @@ public class Player_move : MonoBehaviour
 
         if (move_Vert < 0) GetComponent<Rigidbody2D>().velocity = new Vector3(GetComponent<Rigidbody2D>().velocity.x, move_Vert * walk_speed);
         if (move_Vert > 0) GetComponent<Rigidbody2D>().velocity = new Vector3(GetComponent<Rigidbody2D>().velocity.x, move_Vert * walk_speed);
+
     }
 }

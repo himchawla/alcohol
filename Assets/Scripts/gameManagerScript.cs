@@ -7,7 +7,7 @@ public class gameManagerScript : MonoBehaviour
 {
     float timer = 0.0f, timeOut = 0.0f, timeSane = 0.0f;
     public float sanity = 100.0f;
-
+    public float score = 0.0f;
     public float sanityDowner = 0.1f;
     // Start is called before the first frame update
     private GameObject player;
@@ -25,7 +25,7 @@ public class gameManagerScript : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-
+        score += Time.deltaTime * 50;
        
         int numColliders = 1;
         Collider2D[] colliders = new Collider2D[numColliders];
@@ -36,6 +36,7 @@ public class gameManagerScript : MonoBehaviour
         if (!isInside) 
         {
             timeOut += Time.deltaTime;
+            
             timeSane = 0.0f;
             sanity -= sanityDowner * timeOut / 1000 * timer / 1000;
         }
@@ -43,6 +44,7 @@ public class gameManagerScript : MonoBehaviour
         {
             timeOut = 0.0f;
             timeSane += Time.deltaTime;
+            score += Time.deltaTime * 25;
             if (sanity < 100.0f)
                 sanity += sanityDowner * timer / 100000;
             else sanity = 100.0f;
@@ -50,6 +52,11 @@ public class gameManagerScript : MonoBehaviour
         healthBar.GetComponent<healthBarScript>().setHealth((int)sanity);
     }
 
+
+    public float getTimer()
+    {
+        return timer;
+    }
 
     public void setInside(bool ins)
     {
