@@ -45,9 +45,6 @@ public class gameManagerScript : MonoBehaviour
             timeOut = 0.0f;
             timeSane += Time.deltaTime;
             score += Time.deltaTime * 25;
-            if (sanity < 100.0f)
-                sanity += sanityDowner * timer / 100000;
-            else sanity = 100.0f;
         }
         healthBar.GetComponent<healthBarScript>().setHealth((int)sanity);
     }

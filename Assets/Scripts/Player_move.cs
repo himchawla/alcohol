@@ -7,9 +7,16 @@ public class Player_move : MonoBehaviour
     public float walk_speed = 5.0f;
     public healthBarScript healthBar;
 
+    float lockPos = 0;
+
     public Rigidbody2D bubble;
     public Rigidbody2D arrow;
     private Rigidbody2D player;
+
+    void Update()
+    {
+        transform.rotation = Quaternion.Euler(lockPos, lockPos, lockPos);
+    }
 
     private void Start()
     {
