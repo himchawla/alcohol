@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player_move : MonoBehaviour
 {
     public float walk_speed = 5.0f;
+    public healthBarScript healthBar;
+
 
     void FixedUpdate()
     {
