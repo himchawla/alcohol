@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class Player_move : MonoBehaviour
 {
@@ -14,10 +15,7 @@ public class Player_move : MonoBehaviour
     public Rigidbody2D arrow;
     private Rigidbody2D player;
 
-    void Update()
-    {
-        transform.rotation = Quaternion.Euler(lockPos, lockPos, lockPos);
-    }
+   
 
     private void Start()
     {
@@ -31,10 +29,10 @@ public class Player_move : MonoBehaviour
         dir = bubble.position - player.position;
         dir.Normalize();
 
-        
 
+        player.freezeRotation = true;
         arrow.position = player.position + dir * 5.0f;
-
+        arrow.velocity = new Vector2(0.0f, 0.0f);
 
         if(player.position.x - arrow.position.x > 0)
             arrow.rotation = Vector2.Angle(transform.up, dir) + 90;
@@ -52,6 +50,11 @@ public class Player_move : MonoBehaviour
 
         if (move_Vert < 0) GetComponent<Rigidbody2D>().velocity = new Vector3(GetComponent<Rigidbody2D>().velocity.x, move_Vert * walk_speed);
         if (move_Vert > 0) GetComponent<Rigidbody2D>().velocity = new Vector3(GetComponent<Rigidbody2D>().velocity.x, move_Vert * walk_speed);
+
+        if(GetComponent<Rigidbody2D>().position.y>400.0f)
+        {
+            SceneManager.LoadScene(2);
+        }
 
     }
 

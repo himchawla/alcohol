@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class gameManagerScript : MonoBehaviour
 {
@@ -65,6 +66,10 @@ public class gameManagerScript : MonoBehaviour
 
         }
         healthBar.GetComponent<healthBarScript>().setHealth((int)sanity);
+        if(sanity <= 0.0f)
+        {
+            SceneManager.LoadScene(3);
+        }    
     }
 
 
@@ -86,7 +91,8 @@ public class gameManagerScript : MonoBehaviour
         else if (coinPos.x > 12)
             coinPos.x -= 12;
       //  coin =  Instantiate(coin);
-        coin.transform.position = coinPos;
+        coin.transform.position = new Vector3(coinPos.x, coinPos.y, -2);
+
         coin.GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
         coin.gameObject.SetActive(true);
     }
