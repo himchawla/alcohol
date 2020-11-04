@@ -39,9 +39,11 @@ public class gameManagerScript : MonoBehaviour
             
             timeSane = 0.0f;
             sanity -= sanityDowner * timeOut / 1000 * timer / 1000;
+            player.GetComponent<Player_move>().enableArrow();
         }
         else
         {
+            player.GetComponent<Player_move>().disableArrow();
             timeOut = 0.0f;
             timeSane += Time.deltaTime;
             score += Time.deltaTime * 25;
