@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Player_move : MonoBehaviour
 {
@@ -32,7 +33,15 @@ public class Player_move : MonoBehaviour
 
         
 
-        arrow.position = player.position + dir * 2;
+        arrow.position = player.position + dir * 5.0f;
+
+
+        if(player.position.x - arrow.position.x > 0)
+            arrow.rotation = Vector2.Angle(transform.up, dir) + 90;
+        else
+            arrow.rotation = Vector2.Angle(-transform.up, dir) - 90;
+
+        Debug.Log(arrow.rotation);
 
 
         float move = Input.GetAxis("Horizontal");
@@ -44,5 +53,15 @@ public class Player_move : MonoBehaviour
         if (move_Vert < 0) GetComponent<Rigidbody2D>().velocity = new Vector3(GetComponent<Rigidbody2D>().velocity.x, move_Vert * walk_speed);
         if (move_Vert > 0) GetComponent<Rigidbody2D>().velocity = new Vector3(GetComponent<Rigidbody2D>().velocity.x, move_Vert * walk_speed);
 
+    }
+
+    public void disableArrow()
+    {
+        arrow.GetComponentInParent<SpriteRenderer>().enabled = false;
+    }
+
+    public void enableArrow()
+    {
+        arrow.GetComponentInParent<SpriteRenderer>().enabled = true;
     }
 }
