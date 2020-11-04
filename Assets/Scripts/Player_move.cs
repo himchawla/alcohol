@@ -27,6 +27,7 @@ public class Player_move : MonoBehaviour
 
         arrow.position = player.position + dir * 2;
 
+
         float move = Input.GetAxis("Horizontal");
         float move_Vert = Input.GetAxis("Vertical");
 

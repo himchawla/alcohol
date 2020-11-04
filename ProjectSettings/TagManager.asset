@@ -7,6 +7,9 @@ TagManager:
   - Bubble
   - player
   - gameManager
+  - pauseMenu
+  - CountdownTimer
+  - healthBar
   layers:
   - Default
   - TransparentFX
