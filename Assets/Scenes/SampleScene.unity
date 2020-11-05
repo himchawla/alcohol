@@ -6082,6 +6082,13 @@ MonoBehaviour:
   healthBar: {fileID: 1485413867}
   bubble: {fileID: 1566220073}
   arrow: {fileID: 1137909790}
+  animator: {fileID: 2013924603}
+--- !u!95 &2013924603 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3311312232850652914, guid: 2ac798731ca320f4c83d1b51b9d8d47f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1832816539}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2013924605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8593575146335876795, guid: 2ac798731ca320f4c83d1b51b9d8d47f,
