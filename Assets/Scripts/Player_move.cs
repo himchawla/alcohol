@@ -15,11 +15,18 @@ public class Player_move : MonoBehaviour
     public Rigidbody2D arrow;
     private Rigidbody2D player;
 
-   
+    public Animator animator;
 
     private void Start()
     {
         player = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+
+        animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
+
     }
 
     void FixedUpdate()
